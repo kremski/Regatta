@@ -3,6 +3,8 @@
 ################################################################################
 
 # User-specific files
+/Regatta/.vs/Regatta/v15/.suo
+/Regatta/Regatta/obj
 *.suo
 *.user
 *.userosscache
