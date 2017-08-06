@@ -1,30 +1,37 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Regatta.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Regatta.Controllers
 {
 	[Route("api/[controller]")]
-	public class ValuesController : Controller
+	public class ClubController : Controller
 	{
-		//private RegattaContext _context;
+		private RegattaContext _context;
 
-		//public ValuesController()
-		//{
-		//	_context = new RegattaContext();
-		//}
+		public ClubController()
+		{
+			_context = new RegattaContext();
+		}
 
-		// GET api/values
+		// GET api/club
 		[HttpGet]
 		public IEnumerable<string> Get()
 		{
-			return new string[] { "value1", "value2" };
+			return _context.Clubs.Select(x => x.Name);
 		}
 
 		// GET api/values/5
 		[HttpGet("{id}")]
 		public string Get(int id)
 		{
-			return "value";
+			var club = _context.Clubs.Find(id);
+
+			if (club == null)
+				return string.Empty;
+
+			return club.Name;
 		}
 
 		// POST api/values
